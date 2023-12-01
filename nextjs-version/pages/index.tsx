@@ -1,25 +1,43 @@
 import { useEffect } from "react"
-
-import initGameInstance from "../js/game";
-import * as Gameplay from "../js/gameplay";
-
+import * as Gameplay from "../public/js/gameplay";
 export type WasmInstance = typeof Gameplay;
+
+
+async function getWasm() {
+  try {
+    const res = await fetch("js/gameplay.wasm");
+    // bytes from memory
+    const buffer = await res.arrayBuffer();
+    // this will create an object
+    // WebAssembly is part of window api. so make sure you are on client side. 
+    const wasm = await WebAssembly.instantiate(buffer);
+    console.log(wasm);
+    return wasm.instance.exports as WasmInstance;
+
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 
 export default function Home() {
 
-  useEffect(() => {
-    initGameInstance().then((ins: WasmInstance) => {
-      console.log("setting instance", ins);
-      console.log(ins.add(1, 2));
-      console.log(ins.get_position());
-      console.log(ins.perform_command(0));
-      console.log(ins.get_position());
-    });
-  }, []);
+    useEffect(() => {
+        const run = async () => {
+            const wasm = await getWasm();
 
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    </main>
-  )
+            console.log(wasm.add(10, 20));
+            console.log(wasm.get_position());
+            wasm.perform_command(1);
+            console.log(wasm.get_position());
+        }
+
+        run();
+    });
+
+    return (
+        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        </main>
+    )
 }
+
