@@ -1,0 +1,10 @@
+
+# Cargo build files
+/target
+
+# # All js files
+# *.js
+
+node_modules
+
+/gameplay/target
