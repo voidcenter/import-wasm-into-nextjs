@@ -3,6 +3,12 @@ import * as Gameplay from "../public/js/gameplay";
 export type WasmInstance = typeof Gameplay;
 
 
+
+import initGameInstance from "../public/js/gameplay";
+// import * as Gameplay from "./js/gameplay";
+// export type WasmInstance = typeof Gameplay;
+
+
 async function getWasm() {
   try {
     const res = await fetch("js/gameplay.wasm");
@@ -22,43 +28,55 @@ async function getWasm() {
 }
 
 
+
+
 export default function Home() {
 
     useEffect(() => {
-        const run = async () => {
-            const wasm = await getWasm();
+        initGameInstance().then((ins: WasmInstance) => {
+          console.log("setting instance", ins);
+          console.log(ins.add(1, 2));
+          console.log(ins.get_position());
+          console.log(ins.perform_command(0));
+          console.log(ins.get_position());
+        });
+    }, []);
 
-            // console.log(wasm.add(10, 20));
-            // console.log(wasm.get_position());
-            // wasm.perform_command(1);
-            // console.log(wasm.get_position());
-            console.log(wasm.get_position_int());
-            // console.log(wasm.get_position_str());
+    // useEffect(() => {
+    //     const run = async () => {
+    //         const wasm = await getWasm();
 
-            console.log(wasm.get_hello());
-            console.log(wasm.get_hello_len());
+    //         // console.log(wasm.add(10, 20));
+    //         // console.log(wasm.get_position());
+    //         // wasm.perform_command(1);
+    //         // console.log(wasm.get_position());
+    //         console.log(wasm.get_position_int());
+    //         // console.log(wasm.get_position_str());
 
-            const linearMemory = (wasm as any).memory;
-            console.log(linearMemory);
+    //         console.log(wasm.get_hello());
+    //         console.log(wasm.get_hello_len());
 
-            // create a buffer starting at the reference to the exported string
-            const offset = wasm.get_hello();
-            const stringBuffer = new Uint8Array(linearMemory.buffer, offset, wasm.get_hello_len());
+    //         const linearMemory = (wasm as any).memory;
+    //         console.log(linearMemory);
 
-            // create a string from this buffer
-            // let str = '';
-            // for (let i=0; i<stringBuffer.length; i++) {
-            //   str += String.fromCharCode(stringBuffer[i]);
-            // }
+    //         // create a buffer starting at the reference to the exported string
+    //         const offset = wasm.get_hello();
+    //         const stringBuffer = new Uint8Array(linearMemory.buffer, offset, wasm.get_hello_len());
 
-            let str = new TextDecoder().decode(stringBuffer);
+    //         // create a string from this buffer
+    //         // let str = '';
+    //         // for (let i=0; i<stringBuffer.length; i++) {
+    //         //   str += String.fromCharCode(stringBuffer[i]);
+    //         // }
 
-            console.log(str);
+    //         let str = new TextDecoder().decode(stringBuffer);
 
-        }
+    //         console.log(str);
 
-        run();
-    });
+    //     }
+
+    //     run();
+    // });
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">

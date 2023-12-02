@@ -1,10 +1,10 @@
-module.exports = {
-    // ... (the rest of your webpack configuration)
+// module.exports = {
+//     // ... (the rest of your webpack configuration)
   
-    experiments: {
-      asyncWebAssembly: true,
-    },
+//     experiments: {
+//       asyncWebAssembly: true,
+//     },
   
-    // ... (the rest of your webpack configuration)
-};
+//     // ... (the rest of your webpack configuration)
+// };
 
