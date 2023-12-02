@@ -1,27 +1,25 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* @param {number} a
-* @param {number} b
 * @returns {number}
 */
-export function add(a: number, b: number): number;
+export function get_position_int(): number;
 /**
 * @returns {number}
 */
-export function get_position(): number;
+export function get_hello(): number;
 /**
-* @param {number} command
+* @returns {number}
 */
-export function perform_command(command: number): void;
+export function get_hello_len(): number;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly add: (a: number, b: number) => number;
-  readonly get_position: () => number;
-  readonly perform_command: (a: number) => void;
+  readonly get_position_int: () => number;
+  readonly get_hello: () => number;
+  readonly get_hello_len: () => number;
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;
