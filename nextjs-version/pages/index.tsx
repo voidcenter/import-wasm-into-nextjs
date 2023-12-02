@@ -1,39 +1,11 @@
 import { useEffect } from "react"
-import * as Gameplay from "../public/js/gameplay";
-export type WasmInstance = typeof Gameplay;
-
-
-
 import initGameInstance from "../public/js/gameplay";
-// import * as Gameplay from "./js/gameplay";
-// export type WasmInstance = typeof Gameplay;
-
-
-async function getWasm() {
-  try {
-    const res = await fetch("js/gameplay.wasm");
-    // bytes from memory
-    const buffer = await res.arrayBuffer();
-    // this will create an object
-    // WebAssembly is part of window api. so make sure you are on client side. 
-
-    const imports = { };
-    const wasm = await WebAssembly.instantiate(buffer, imports);
-    console.log(wasm);
-    return wasm.instance.exports as WasmInstance;
-
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-
 
 
 export default function Home() {
 
     useEffect(() => {
-        initGameInstance().then((ins: WasmInstance) => {
+        initGameInstance().then((ins) => {
           console.log("setting instance", ins);
           console.log(ins.add(1, 2));
           console.log(ins.get_position());
@@ -83,4 +55,23 @@ export default function Home() {
         </main>
     )
 }
+
+
+// async function getWasm() {
+//   try {
+//     const res = await fetch("js/gameplay.wasm");
+//     // bytes from memory
+//     const buffer = await res.arrayBuffer();
+//     // this will create an object
+//     // WebAssembly is part of window api. so make sure you are on client side. 
+
+//     const imports = { };
+//     const wasm = await WebAssembly.instantiate(buffer, imports);
+//     console.log(wasm);
+//     return wasm.instance.exports as WasmInstance;
+
+//   } catch (e) {
+//     console.log(e);
+//   }
+// }
 

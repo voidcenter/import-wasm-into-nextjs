@@ -1,15 +1,11 @@
 import { useEffect } from "react";
 import initGameInstance from "./js/game";
-import * as Gameplay from "./js/gameplay";
-
-export type WasmInstance = typeof Gameplay;
-
 
 
 export function App() {
 
   useEffect(() => {
-    initGameInstance().then((ins: WasmInstance) => {
+    initGameInstance().then((ins) => {
       console.log("setting instance", ins);
       console.log(ins.add(1, 2));
       console.log(ins.get_position());
@@ -22,4 +18,10 @@ export function App() {
     <div></div>
   );
 }
+
+
+
+
+// import * as Gameplay from "./js/gameplay";
+// export type WasmInstance = typeof Gameplay;
 

@@ -14,18 +14,6 @@ export function get_position(): number;
 * @param {number} command
 */
 export function perform_command(command: number): void;
-/**
-* @returns {number}
-*/
-export function get_position_int(): number;
-/**
-* @returns {number}
-*/
-export function get_hello(): number;
-/**
-* @returns {number}
-*/
-export function get_hello_len(): number;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
@@ -33,9 +21,6 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly add: (a: number, b: number) => number;
   readonly get_position: () => number;
-  readonly get_position_int: () => number;
-  readonly get_hello: () => number;
-  readonly get_hello_len: () => number;
   readonly perform_command: (a: number) => void;
 }
 
