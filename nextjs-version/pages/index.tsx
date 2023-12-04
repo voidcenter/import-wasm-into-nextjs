@@ -1,18 +1,44 @@
 import { useEffect } from "react"
-import initGameInstance from "../public/js/gameplay";
+// import initGameInstance from "../public/js/gameplay";
+
+import wasmInit, {
+  add_wasm_by_example_to_string,
+} from "../public/js/gameplay.js";
 
 
 export default function Home() {
 
-    useEffect(() => {
-        initGameInstance().then((ins) => {
-          console.log("setting instance", ins);
-          console.log(ins.add(1, 2));
-          console.log(ins.get_position());
-          console.log(ins.perform_command(0));
-          console.log(ins.get_position());
-        });
-    }, []);
+  useEffect(() => {
+
+      const run = async () => {
+
+          console.log('test');
+
+          // Instantiate our wasm module
+          const rustWasm = await wasmInit("js/gameplay.wasm");
+          // initSync();
+
+          // Call our exported function
+          const helloString = add_wasm_by_example_to_string("Hello from ");
+
+          // Log the result to the console
+          console.log(helloString);
+      };
+
+      run();
+
+  });
+
+
+    // useEffect(() => {
+    //     initGameInstance().then((ins) => {
+    //       console.log("setting instance", ins);
+    //       console.log(ins.add(1, 2));
+    //       console.log(ins.get_position());
+    //       console.log(ins.perform_command(0));
+    //       console.log(ins.get_position());
+    //     });
+    // }, []);
 
     // useEffect(() => {
     //     const run = async () => {

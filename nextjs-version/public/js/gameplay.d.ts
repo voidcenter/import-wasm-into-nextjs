@@ -14,6 +14,11 @@ export function get_position(): number;
 * @param {number} command
 */
 export function perform_command(command: number): void;
+/**
+* @param {string} input_string
+* @returns {string}
+*/
+export function add_wasm_by_example_to_string(input_string: string): string;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
@@ -21,7 +26,12 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly add: (a: number, b: number) => number;
   readonly get_position: () => number;
+  readonly add_wasm_by_example_to_string: (a: number, b: number, c: number) => void;
   readonly perform_command: (a: number) => void;
+  readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
+  readonly __wbindgen_malloc: (a: number, b: number) => number;
+  readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
+  readonly __wbindgen_free: (a: number, b: number, c: number) => void;
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;

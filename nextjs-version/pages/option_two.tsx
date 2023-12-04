@@ -29,8 +29,8 @@ export default function Home() {
             const wasm = await getWasm();
 
             console.log(wasm);
-            console.log(wasm.add(10, 20));
-            console.log(wasm.get_position());
+            // console.log(wasm.add(10, 20));
+            // console.log(wasm.get_position());
         }
 
         run();
