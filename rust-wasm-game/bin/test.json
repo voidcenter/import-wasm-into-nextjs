@@ -1,0 +1,55 @@
+{
+    "state": "Starting",
+    "round": 0,
+    "start_ts": 1701489311185,
+    "ts": 1701489311185,
+    "player_states": [
+        {
+            "id": 0,
+            "pixelpos": {
+                "x": 336,
+                "y": 286
+            },
+            "tilepos": {
+                "x": 10,
+                "y": 7
+            },
+            "direction": "None",
+            "moving": false,
+            "exp_gained": 0,
+            "eliminated_ts": 0
+        }
+    ],
+    "row_firing": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    ],
+    "col_firing": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    ],
+    "warning_starting_ts": 0,
+    "end_game_ts": 0,
+    "lcg_rand_seed": 1652294830
+}
+
+{"round":0,"start_ts":1701489836981,"ts":1701489836981,"warning_starting_ts":0,"end_game_ts":0,"lcg_rand_seed":1652294830}
